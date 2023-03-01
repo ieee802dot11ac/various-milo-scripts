@@ -4,6 +4,8 @@
 import sys
 from dataclasses import dataclass
 import numpy
+
+# no structs :despair:
 @dataclass
 class DDSHeader:
     magic: numpy.uint32 = 0x44445320
@@ -11,12 +13,29 @@ class DDSHeader:
     dwFlags: numpy.uint32 = 0x1007
     dwHeight: numpy.uint32 = 0
     dwWidth: numpy.uint32 = 0
+    dwPitchOrLinearSize: numpy.uint32 = (dwWidth*8+7)/8
+    dwDepth: numpy.uint32 = 0
+    dwMipMapCount: numpy.uint32 = 0
+    dwReserved1_1: numpy.uint32 = 0
+    dwReserved1_2: numpy.uint32 = 0
+    dwReserved1_3: numpy.uint32 = 0
+    dwReserved1_4: numpy.uint32 = 0
+    dwReserved1_5: numpy.uint32 = 0
+    dwReserved1_6: numpy.uint32 = 0
+    dwReserved1_7: numpy.uint32 = 0
+    dwReserved1_8: numpy.uint32 = 0
+    dwReserved1_9: numpy.uint32 = 0
+    dwReserved1_10: numpy.uint32 = 0
+    dwReserved1_11: numpy.uint32 = 0
+    ddspf: numpy.uint32 = 0 # actually 32 bytes wide but hush, this is temp
+    dwCaps: numpy.uint32 = 0x1000
+
 
 try:
     working_file = open(sys.argv[1],mode='rb').read()
     result_file = open(sys.argv[2],mode='wb')
 except:
-    print("either of: no filename(s), no file/bad perms. are you sure you own this directory? aborting...")
+    print("either of: no filename(s), no file/bad perms. are you sure you typed it right? aborting...")
     sys.exit()
 
 if (not (sys.argv[1].lower().endswith('.bmp'))):
