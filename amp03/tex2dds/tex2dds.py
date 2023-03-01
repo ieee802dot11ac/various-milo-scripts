@@ -13,7 +13,7 @@ class DDSHeader:
     dwFlags: numpy.uint32 = 0x1007
     dwHeight: numpy.uint32 = 0
     dwWidth: numpy.uint32 = 0
-    dwPitchOrLinearSize: numpy.uint32 = (dwWidth*8+7)/8
+    dwPitchOrLinearSize: numpy.uint32 = 0
     dwDepth: numpy.uint32 = 0
     dwMipMapCount: numpy.uint32 = 0
     dwReserved1_1: numpy.uint32 = 0
@@ -30,6 +30,7 @@ class DDSHeader:
     ddspf: numpy.uint32 = 0 # actually 32 bytes wide but hush, this is temp
     dwCaps: numpy.uint32 = 0x1000
 
+dds_hdr = new DDSHeader;
 
 try:
     working_file = open(sys.argv[1],mode='rb').read()
@@ -51,3 +52,5 @@ if (working_file[0] != 0x05):
 
 image_width = working_file[4]
 print(image_width)
+dds_hdr.dwWidth = image_width
+dds_hdr.dwPitchOrLinearSize = (image_width*8+7)/8
