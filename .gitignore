@@ -1,0 +1,10 @@
+# just for safety's sake
+.bmp
+.bmp.gz
+.dds
+
+# don't think we want random milos getting committed by accident
+.milo_ps2
+.milo_xbox
+.rnd
+.gh
